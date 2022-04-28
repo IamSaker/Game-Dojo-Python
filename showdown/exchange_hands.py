@@ -1,10 +1,11 @@
+from constants import EXCHANGE_DURATION
 from player import Player
 
 
 class ExchangeHands:
     def __init__(self, origin_player) -> None:
         self.is_used: bool = False
-        self.rounds: int = 3
+        self.rounds: int = EXCHANGE_DURATION
         self.origin_player: Player = origin_player
         self.target_player: Player = None
 
