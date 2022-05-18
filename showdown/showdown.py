@@ -19,6 +19,7 @@ class ShowDown:
     def _create_players(self):
         self._generate_player()
         self._naming()
+        self._set_initial_score()
 
     def _generate_player(self):
         human_number = input('How many people want to join the game? (at most four players):')
@@ -32,6 +33,10 @@ class ShowDown:
     def _naming(self):
         for player in self.players:
             player.name_himself()
+
+    def _set_initial_score(self):
+        for player in self.players:
+            player.point = 0
 
     def _shuffle_cards(self):
         self.desk.create_standard_desk()
