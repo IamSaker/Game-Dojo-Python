@@ -60,7 +60,7 @@ class AiPlayer(Player):
     def draw_card(self, cards):
         index = self._pick(cards)
         card = cards.pop(index)
-        self._cards.add(card)
+        self._cards.append(card)
 
     def name_himself(self) -> None:
         self.name = 'AI Player'
@@ -69,9 +69,16 @@ class AiPlayer(Player):
 class HumanPlayer(Player):
 
     def show(self):
+        max_hands = 0
         for i, card in enumerate(self.cards):
             print(f'Index: {i}, Rank: {card.rank}, Suit: {card.suit}')
-        index = input('Choose a card [index]: ')
+            max_hands += i
+        print('\n===========================')
+        while True:
+            index = int(input('Choose a card [index]: '))
+            if isinstance(index, int) and 0 <= index <= max_hands:
+                break
+            print('Over index, you must re-choose card!')
         return self._cards.pop(int(index))
 
     def draw_card(self, cards):
