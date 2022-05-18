@@ -22,7 +22,7 @@ class ShowDown:
         self._set_initial_score()
 
     def _generate_player(self):
-        human_number = input('How many people want to join the game? (at most four players):')
+        human_number = int(input('How many people want to join the game? (at most four players): '))
     
         self.players = [
             HumanPlayer()
@@ -44,7 +44,7 @@ class ShowDown:
 
     def _draw_card(self):
         for player in self.players:
-            for _ in HANDS_NUMBER:
+            for _ in range(HANDS_NUMBER):
                 player.draw_card(self.desk.cards)
 
     def play_a_round(self):
@@ -55,7 +55,8 @@ class ShowDown:
         self.add_point(self.players[play_index])
 
         if not self.rounds:
-            self.end_turn()
+            winner = self.end_turn()
+            print(f'Winner is {winner}')
 
     def compare(self, cards):
         highest_rank = 0
@@ -80,7 +81,7 @@ class ShowDown:
         return self._get_winner(maximum, player_points)
 
     def _get_maximum_points(self, player_points):
-        return max(player_points, key=player_points.values())
+        return max(player_points.values())
 
     def _get_winner(self, maximum, player_points):
         result = dict(filter(lambda x:x[1] == maximum, player_points.items()))
