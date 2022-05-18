@@ -69,6 +69,7 @@ class AiPlayer(Player):
 class HumanPlayer(Player):
 
     def show(self):
+        print('\nThere are your hands:\n')
         max_hands = 0
         for i, card in enumerate(self.cards):
             print(f'Index: {i}, Rank: {card.rank}, Suit: {card.suit}')
@@ -87,5 +88,5 @@ class HumanPlayer(Player):
         self._cards.append(card)
 
     def name_himself(self) -> None:
-        name = input('Your Name: ')
+        name = input('\nYour Name: ')
         self.name = name

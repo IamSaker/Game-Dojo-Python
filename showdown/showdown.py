@@ -63,7 +63,10 @@ class ShowDown:
         highest_suit = 0
         play_index = 0
 
+        print('\n---------------------------')
         for i, card in enumerate(cards):
+            player_name = self.players[play_index].name
+            print(f'Player:{player_name} Rank:{card.rank} Suit:{card.suit}')
             if ((card.rank > highest_rank) or
                 (card.rank == highest_rank and card.suit > highest_suit)):
                 highest_rank, highest_suit = card.rank, card.suit
@@ -74,6 +77,9 @@ class ShowDown:
     def add_point(self, player):
         point = player.point
         player.point = point + 1
+        print('\n+++++++++++++++++++++++++++++++++++++++++++++++')
+        print(f'This turn is won by this player: {player.name}')
+        print('+++++++++++++++++++++++++++++++++++++++++++++++')
 
     def end_turn(self):
         player_points = {i: player.point for i, player in enumerate(self.players)}
