@@ -8,7 +8,7 @@ class DistanceBasedMatchmakingStrategy(MatchmakingStrategy):
     """ Matchmaking Strategy by Distance-based """
 
     def matchmaking(self, strategy, myself, individuals) -> Individual:
-        the_right_one: str
+        the_right_one: Individual = mock_casanova()
         matchmaking_distance: int = POS_INF if strategy is lt else NEG_INF
 
         for individual in individuals:
@@ -32,7 +32,7 @@ class HabitBasedMatchmakingStrategy(MatchmakingStrategy):
     """ Matchmaking Strategy by Habit-based """
 
     def matchmaking(self, strategy, myself, individuals) -> Individual:
-        the_right_one: str
+        the_right_one: Individual = mock_casanova()
         habit_intersection: list[str] = [] if strategy is gt else list(range(500))
 
         for individual in individuals:
@@ -58,3 +58,9 @@ def is_same(origin, target) -> bool:
 
 def choice_minimum_id(origin, target) -> bool:
     return origin if origin.id < target.id else target
+
+
+def mock_casanova() -> Individual:
+    don_juan = Individual()
+    don_juan.id = 999
+    return don_juan
